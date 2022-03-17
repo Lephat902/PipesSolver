@@ -1,0 +1,6 @@
+Trong phần code trên em đã tách ra thành nhiều class nhỏ, khi mình đổi giải thuật thì vẫn tái sử dụng được những class như BoardPrinter (in các bước ra console), các enum, DirectionUtil (để lấy các hướng mà một pipe đang chỉ), CheckWin (để kiểm tra một bảng hướng ống có phải là kết quả mong muốn hay không).
+
+Đối với phần A* thì em nghĩ tạo ra các khái niệm về heuristic sau đó thay thế vào file main.py. Thay cái queue có sẵn bằng priority_queue là được. Bây giờ cái quan trọng là xây dựng hàm h phù hợp là được. 
+Hàm g: do ở đây ko có độ sâu ttìm kiếm như các bài khác nên em nghĩ mình ko cần hàm g
+Hàm h có thể là tổng số các cặp nối nhau giữa các ống
+Ta sẽ chọn trường hợp nào có h lớn nhất trong priority_queue thay vì chọn theo thứ tự như queue thường của bfs.

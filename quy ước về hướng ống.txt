@@ -1,0 +1,19 @@
+Lưu ý về input của game Pipes trong code như sau:
+
+1) Ống thẳng chỉ có 2 hướng: RIGHT và UP, các ống còn lại có cả 4 hướng.
+2) Tên các ống trong code là:
++ Ống thẳng: Coupling
++ Ống co 90*: Elbow
++ Ống có bình tròn: end cap
++ Ống co 3: Tee
+
+3) Hướng ống quy ước như sau:
++ Phải:
+	+ Ống thẳng: khi ống nằm ngang(--)
+	+ Ống co 90*: khi ống ở góc phần tư thứ nhất (|_)
+	+ Ống có bình tròn: đầu ống hướng sang trái (o--)
+	+ Ống co 3: khi co giữa hướng lên (_|_)
++ Tương tự các hướng còn lại khi xoay theo chiều dương 90*
+
+3) Để đơn giản hóa, khi nhập input ta chỉ cần tạo hai ma trận pipeTypeNumber and pipeDirectionNumber, giá trị từng ô quy ước như sau:
+ + Ta chỉ cần nhập theo giá trị số của enum, ko cần nhập đầy đủ tên
