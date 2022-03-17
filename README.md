@@ -36,5 +36,7 @@ The puzzle on this particular [website](https://www.puzzle-pipes.com/) has 4 [ty
 - [PipeType.py](./PipeType.py) : define 4 [types](types) of pipes
 - [Direction.py](./Direction.py) : define the direction of each pipe can have
 - [CheckWin.py](./CheckWin.py) : modules to check if we have solved the puzzles while searching by checking all connected pipes without loops
-- [PipeDirectionsHelper](./PipeDirectionsHelper.py) : define the direction that the pipe is pointing to and check if the surrouding pipes match
-> Updating ...
+- [PipeDirectionsHelper.py](./PipeDirectionsHelper.py) : define the direction that the pipe is pointing to and check if the surrouding pipes match
+- [BFSPipeSolver.py](./BFSPipeSolver.py): Implement BFS to solve the puzzle
+- [aStarPipeSolver.py](./aStarPipeSolver.py): Implement A* to solve the puzzle
+- [BoardPrinter.py](./BoardPrinter.py): Used to print the game boards.
