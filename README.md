@@ -25,11 +25,12 @@ There is a loop in the puzzle and some unconnected pipes <br>
  <img src="https://user-images.githubusercontent.com/49335345/158780784-c21c3aa0-267d-45ec-b20d-7ed1837719f4.png" width="300px" height="300px">
  </div>
 
-The puzzle on this particular [website](https://www.puzzle-pipes.com/) has 4 types of pipes and we will concentrate on solving the puzzles based on the input from the page only:
-- End pipe
-- Line pipe
-- T pipe
-- Elbow pipe
+The puzzle on this particular [website](https://www.puzzle-pipes.com/) has 4 [types of pipes](types) and we will concentrate on solving the puzzles based on the input from the page only:
+- End pipe    <img src="https://user-images.githubusercontent.com/49335345/158784228-9d52b3c7-4b14-43b6-b122-d56f0805007d.png" width="15px" height="15px">
+- Line pipe  <img src="https://user-images.githubusercontent.com/49335345/158784779-e7d550e3-d9c0-419f-af91-bbd34eaf6363.png" width="15px" height="15px">
+- T pipe <img src="https://user-images.githubusercontent.com/49335345/158784912-764c73d2-d9dd-4c49-b2d0-89dc1fcc6a71.png" width="15px" height="15px">
+- Elbow pipe <img src="https://user-images.githubusercontent.com/49335345/158785040-c731d6ae-0d29-47ca-b8d9-3f6d77eaf2b2.png" width="15px" height="15px">
+
   
 # Files in this project
 - [PipeType.py](./PipeType.py) : 
