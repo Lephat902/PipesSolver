@@ -1,4 +1,4 @@
-# Testcase 5x5: test git
+# Testcase 5x5:
 pipeTypeNumber = np.array([
     np.array([1,3,2,2,1]),
     np.array([1,2,3,3,2]),
