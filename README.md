@@ -24,5 +24,12 @@ There is a loop in the puzzle and some unconnected pipes <br>
 <div align="center">
  <img src="https://user-images.githubusercontent.com/49335345/158780784-c21c3aa0-267d-45ec-b20d-7ed1837719f4.png" width="300px" height="300px">
  </div>
-  
 
+The puzzle on this particular [website](https://www.puzzle-pipes.com/) has 4 types of pipes and we will concentrate on solving the puzzles based on the input from the page only:
+- End pipe
+- Line pipe
+- T pipe
+- Elbow pipe
+  
+# Files in this project
+- [PipeType.py](./PipeType.py) : 
