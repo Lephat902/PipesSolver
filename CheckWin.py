@@ -55,23 +55,8 @@ class CheckWin:
         
         return True
 
-    # check if the current pipe direction matches the right and bottom ones
-    # the reason for checking only the right and bottom is that the top and left is already checked
-    def matchRightAndBottomPipes(self, pipePos):
-        matchRight = self.pipeDirectionsHelper_full.matchRight(pipePos)
-        matchBottom = self.pipeDirectionsHelper_full.matchBottom(pipePos)
-        
-        return (matchRight and matchBottom)
-
     def checkWin(self, pipeDirectionBoard):
         self.pipeDirectionsHelper_full = PipeDirectionsHelper_full(self.pipeTypeBoard, pipeDirectionBoard)
-
-        # each cell only need to check right and bottom ones
-        for i in range(self.rows):
-            for j in range(self.columns):
-                if (not self.matchRightAndBottomPipes((i,j))):
-                    self.pipeDirectionsHelper_full = None # deallocate pipeDirectionsHelper
-                    return False
        
         noLoop_And_SingleGroup = self.assert_NoLoop_And_SingleGroup()
         self.pipeDirectionsHelper_full = None # deallocate pipeDirectionsHelper
