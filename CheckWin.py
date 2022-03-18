@@ -2,6 +2,8 @@ import numpy as np
 from Direction import Direction
 from PipeDirectionsHelper import PipeDirectionsHelper_full 
 
+# we only check win when there's no pipe mismatch in the board
+# otherwise it will behave unexpectedly
 class CheckWin:
     def __init__(self, pipeTypeBoard):
         self.pipeTypeBoard = pipeTypeBoard
