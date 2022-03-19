@@ -37,7 +37,7 @@ class InputReader:
 
     def buildOutput(self):
         with open(self.filePath) as file:
-            self.array2d = [([int(digit) for digit in line.split(",")]) for line in file if (line != "\n")]   
+            self.array2d = [([int(digit) for digit in line.split(",")]) for line in file if ("," in line)]   
             self.numOfLines = len(self.array2d)
 
         pipeTypeNumberBoard = np.array(self.array2d[0 : (int(self.numOfLines / 2))])
