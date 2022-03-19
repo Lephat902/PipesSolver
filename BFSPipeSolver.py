@@ -228,7 +228,7 @@ class PipeSolver:
 
 
 # Input of the game
-inputReader = InputReader('input/test2.txt')
+inputReader = InputReader('input/test3.txt')
 pipeTypeBoard = inputReader.getPipeTypeBoard()
 pipeDirectionBoard = inputReader.getDirectionBoard()
 

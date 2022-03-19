@@ -1,0 +1,1 @@
+Khi nhập input ta lưu ý các quy ước sau: nhập một bảng các con số, cách nhau bởi dấu phẩy, ko có ký tự thừa ở đầu hoặc cuối dòng, hai bảng cách nhau bởi một dòng trống.

@@ -206,7 +206,7 @@ class PipeSolver:
         print("Total time taken by A* Algorithm: {0} second(s)".format(elapsedTime))
 
 # Input of the game
-inputReader = InputReader('input/test2.txt')
+inputReader = InputReader('input/test3.txt')
 pipeTypeBoard = inputReader.getPipeTypeBoard()
 pipeDirectionBoard = inputReader.getDirectionBoard()
 del inputReader # we no longer need it
