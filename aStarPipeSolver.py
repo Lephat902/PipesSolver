@@ -1,5 +1,6 @@
 import numpy as np
 from queue import PriorityQueue
+from InputReader import InputReader
 from PipeType import PipeType
 from Direction import Direction
 from BoardPrinter import BoardPrinter
@@ -14,35 +15,7 @@ def xnor(a, b):
 def printMemoryUsage():
     # print memory usage
     memoryUsage = psutil.Process().memory_info().rss / (1024 * 1024)
-    print("The memory usage is: {0} (MB)".format(memoryUsage))
-
-def convertToPipeTypeBoard(pipeTypeNumber):
-    rows = len(pipeTypeNumber)
-    columns = len(pipeTypeNumber[0])
-    pipeTypeBoard = np.zeros((rows, columns), PipeType)
-
-    for i in range(rows):
-        for j in range(columns):
-            pipeTypeBoard[i][j] = PipeType(pipeTypeNumber[i][j])
-
-    return pipeTypeBoard
-
-def convertToPipeDirectionBoard(pipeDirectionNumber, pipeTypeBoard):
-    rows = len(pipeDirectionNumber)
-    columns = len(pipeDirectionNumber[0])
-    pipeDirectionBoard = np.zeros((rows, columns), Direction)
-
-    for i in range(rows):
-        for j in range(columns):
-            pipeDirectionBoard[i][j] = Direction(pipeDirectionNumber[i][j])
-            # adjust the direction if user input for coupling is wrong
-            if (pipeTypeBoard[i][j] == PipeType.COUPLING):
-                if (pipeDirectionBoard[i][j] == Direction.LEFT):
-                    pipeDirectionBoard[i][j] = Direction.RIGHT
-                elif (pipeDirectionBoard[i][j] == Direction.DOWN):
-                    pipeDirectionBoard[i][j] = Direction.UP  
-
-    return pipeDirectionBoard 
+    print("The memory usage is: {0} (MB)".format(memoryUsage)) 
 
 class pqItem:
     def __init__(self, directionBoard, pipePos, movesList, hValue):
@@ -233,34 +206,10 @@ class PipeSolver:
         print("Total time taken by A* Algorithm: {0} second(s)".format(elapsedTime))
 
 # Input of the game
-pipeTypeNumber = np.array([
-    np.array([1,2,1,1,2,2,0,1,1,2]),
-    np.array([1,3,3,2,2,3,3,1,1,0]),
-    np.array([1,3,3,3,3,2,0,2,3,3]),
-    np.array([1,2,1,3,3,1,1,0,1,1]),
-    np.array([1,2,1,2,3,3,2,3,3,1]),
-    np.array([1,3,1,0,2,3,3,1,2,2]),
-    np.array([2,3,3,0,2,3,3,3,0,2]),
-    np.array([3,1,0,1,3,3,1,2,2,1]),
-    np.array([1,1,3,1,2,3,0,2,1,1]),
-    np.array([1,3,3,1,2,0,1,2,0,2])
-])
-
-pipeDirectionNumber = np.array([
-    np.array([0,1,3,1,1,2,1,1,2,1]),
-    np.array([0,2,3,1,2,3,1,1,3,1]),
-    np.array([1,3,2,3,0,3,0,2,3,1]),
-    np.array([1,3,1,1,0,3,3,0,0,1]),
-    np.array([3,2,3,1,1,1,3,1,3,0]),
-    np.array([0,2,3,0,3,2,1,1,2,3]),
-    np.array([3,3,3,1,3,0,2,0,1,2]),
-    np.array([2,0,1,1,2,0,3,0,0,2]),
-    np.array([0,2,2,1,1,2,0,0,3,3]),
-    np.array([2,0,3,3,0,2,3,3,0,2]) 
-])
-
-pipeTypeBoard = convertToPipeTypeBoard(pipeTypeNumber)
-pipeDirectionBoard = convertToPipeDirectionBoard(pipeDirectionNumber, pipeTypeBoard)
+inputReader = InputReader('input/test2.txt')
+pipeTypeBoard = inputReader.getPipeTypeBoard()
+pipeDirectionBoard = inputReader.getDirectionBoard()
+del inputReader # we no longer need it
 
 pipeSolver = PipeSolver(pipeTypeBoard, pipeDirectionBoard)
 pipeSolver.aStar()
