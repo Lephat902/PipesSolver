@@ -59,6 +59,15 @@ class PipeSolver:
         matchLeft = xnor((Direction.LEFT in directions_current), (Direction.RIGHT in directions_left))
         matchTop = xnor((Direction.UP in directions_current), (Direction.DOWN in directions_top))
 
+        if (x == self.rows - 1): # at the bottom edge
+            matchBottom = not(Direction.DOWN in directions_current)
+            if not matchBottom:
+                return False
+        if (y == self.columns - 1): # at the right edge
+            matchRight = not(Direction.RIGHT in directions_current)
+            if not matchRight:
+                return False
+
         return (matchLeft and matchTop)
         
     # next Pos to execute in A*
@@ -206,7 +215,7 @@ class PipeSolver:
         print("Total time taken by A* Algorithm: {0} second(s)".format(elapsedTime))
 
 # Input of the game
-inputReader = InputReader('input/test4.txt')
+inputReader = InputReader('input/test2.txt')
 pipeTypeBoard = inputReader.getPipeTypeBoard()
 pipeDirectionBoard = inputReader.getDirectionBoard()
 del inputReader # we no longer need it

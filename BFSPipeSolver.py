@@ -53,17 +53,26 @@ class PipeSolver:
         x = pipePos[0]
         y = pipePos[1]
 
-        directions = self.pipeDirectionsHelper.get_directions_pipe_point_to(
+        directions_current = self.pipeDirectionsHelper.get_directions_pipe_point_to(
             pipePos, operation)
         directions_above = self.pipeDirectionsHelper.get_directions_pipe_point_to(
             (x - 1, y), currentDirectionBoard[x - 1][y])
         directions_left = self.pipeDirectionsHelper.get_directions_pipe_point_to(
             (x, y - 1), currentDirectionBoard[x][y - 1])
 
-        matchLeft = xnor((Direction.LEFT in directions),
+        matchLeft = xnor((Direction.LEFT in directions_current),
                          (Direction.RIGHT in directions_left))
-        matchTop = xnor((Direction.UP in directions),
+        matchTop = xnor((Direction.UP in directions_current),
                         (Direction.DOWN in directions_above))
+
+        if (x == self.rows - 1): # at the bottom edge
+            matchBottom = not(Direction.DOWN in directions_current)
+            if not matchBottom:
+                return False
+        if (y == self.columns - 1): # at the right edge
+            matchRight = not(Direction.RIGHT in directions_current)
+            if not matchRight:
+                return False
 
         return (matchTop and matchLeft)
 
@@ -228,7 +237,7 @@ class PipeSolver:
 
 
 # Input of the game
-inputReader = InputReader('input/test4.txt')
+inputReader = InputReader('input/test2.txt')
 pipeTypeBoard = inputReader.getPipeTypeBoard()
 pipeDirectionBoard = inputReader.getDirectionBoard()
 
