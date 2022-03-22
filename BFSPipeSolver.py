@@ -12,10 +12,12 @@ import psutil  # used to measure memory usage
 def xnor(a, b):
     return ((a and b) or (not a and not b))
 
+
 def printMemoryUsage():
     # print memory usage
     memoryUsage = psutil.Process().memory_info().rss / (1024 * 1024)
     print("The memory usage is: {0} (MB)".format(memoryUsage))
+
 
 class queueItem:
     def __init__(self, directionBoard, pipePos, movesList, numOfPipeMismatches):
@@ -49,6 +51,7 @@ class PipeSolver:
     # check if the current pipe's direction matches the left and above ones.
     # the reason why to check the left and top is that they are
     # currently immutable bacause they're already executed
+    # Complexity : O(1)
     def isValidMove(self, currentDirectionBoard, pipePos, operation):
         x = pipePos[0]
         y = pipePos[1]
@@ -65,11 +68,11 @@ class PipeSolver:
         matchTop = xnor((Direction.UP in directions_current),
                         (Direction.DOWN in directions_above))
 
-        if (x == self.rows - 1): # at the bottom edge
+        if (x == self.rows - 1):  # at the bottom edge
             matchBottom = not(Direction.DOWN in directions_current)
             if not matchBottom:
                 return False
-        if (y == self.columns - 1): # at the right edge
+        if (y == self.columns - 1):  # at the right edge
             matchRight = not(Direction.RIGHT in directions_current)
             if not matchRight:
                 return False
@@ -77,6 +80,7 @@ class PipeSolver:
         return (matchTop and matchLeft)
 
     # next position to execute in board
+    # Complexity: O(1)
     def getNextPos(self, pipePos):
         x = pipePos[0]
         y = pipePos[1]
@@ -105,6 +109,7 @@ class PipeSolver:
             self.pipeTypeBoard, directionBoard)
 
         # each pipe checks the right and bottom pipe of its
+        # Complexity O(n ^ 2)
         for i in range(self.rows):
             for j in range(self.columns):
                 currentPipePos = (i, j)
@@ -130,6 +135,7 @@ class PipeSolver:
 
         return counter
 
+     # Complexity: O(1)
     def isValidIndex(self, pipePos):
         x = pipePos[0]
         y = pipePos[1]
@@ -140,6 +146,7 @@ class PipeSolver:
     adjPos_Y = [1, 0, -1, 0]
     fourDirections = [dir for dir in Direction]
 
+    # Complexity : O(1)
     def getNumOfPipeMismatchesAt(self, directionBoard, pipePos):
         x = pipePos[0]
         y = pipePos[1]

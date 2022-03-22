@@ -40,3 +40,7 @@ The puzzle on this particular [website](https://www.puzzle-pipes.com/) has 4 [ty
 - [BFSPipeSolver.py](./BFSPipeSolver.py): Implement BFS to solve the puzzle
 - [aStarPipeSolver.py](./aStarPipeSolver.py): Implement A* to solve the puzzle
 - [BoardPrinter.py](./BoardPrinter.py): Used to print the game boards.
+
+# Things that can be improved
+- More interactive, user-friendly UI
+- Convert real image input to "usable" input that can be used in code
