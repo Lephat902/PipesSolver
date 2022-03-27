@@ -18,17 +18,15 @@ def printMemoryUsage():
     print("The memory usage is: {0} (MB)".format(memoryUsage)) 
 
 class pqItem:
-    def __init__(self, directionBoard, pipePos, movesList, hValue):
+    def __init__(self, directionBoard, pipePos, movesList, hValue, gValue):
         self.directionBoard = directionBoard
         self.pipePos = pipePos
         self.movesList = movesList
         self.hValue = hValue
+        self.gValue = gValue
 
     def __lt__(self, other):
-        if self.hValue == other.hValue:
-            return len(self.movesList) > len(other.movesList) # prioritize longer movesList
-        else:
-            return self.hValue < other.hValue
+        return self.hValue - self.gValue < other.hValue - other.gValue
     
     def getDirectionBoard(self):
         return self.directionBoard
@@ -38,6 +36,8 @@ class pqItem:
         return self.movesList
     def getHValue(self):
         return self.hValue
+    def getGValue(self):
+        return self.gValue
 
 class PipeSolver:
     def __init__(self, pipeTypeBoard, pipeDirectionBoard):
@@ -157,17 +157,18 @@ class PipeSolver:
         # newH = currentH + numOfPipeMismatches difference of 2 states when change direction of a pipe
         return (currentHValue + (numOfMismatches_new - numOfMismatches_current))
 
+    # gValue is the number of moves so far
+    # 
+    # hValue is calculated as number of pipeMismatches (E.g. pipeA points to pipeB
+    # but pipeB doesn't do the same)
+    # fValue = hValue - gValue (prioritize lower hValue and higher gValue)
+    # priority queue will take the state has the lowest hValue
     def aStar(self):
         start_time = time.time() # get the start time
         openList = PriorityQueue()
-        # In this game, we only rotate at most (rows x columns) pipes
-        # so we don't consider the depth of the tree then there's no gValue or gValue = 0 for all states
-        #
-        # hValue is calculated as number of pipeMismatches (E.g. pipeA points to pipeB
-        # but pipeB doesn't do the same)
-        # priority queue will take the state has the lowest hValue
+
         hValueOfFirstItem = self.getNumOfPipeMismatches_init(self.pipeDirectionBoard) # hValue
-        firstItem = pqItem(self.pipeDirectionBoard, (0,0), [], hValueOfFirstItem)
+        firstItem = pqItem(self.pipeDirectionBoard, (0,0), [], hValueOfFirstItem, 0)
         openList.put(firstItem)
         counter = 0 # count for the times popping the queue
 
@@ -178,6 +179,7 @@ class PipeSolver:
             currentPos = current.getPipePos()
             currentMovesList = current.getMovesList()
             currentHValue = current.getHValue()
+            currentGValue = current.getGValue()
             
             # we only check win when there's no mismatch pipes
             if (currentHValue == 0 and self.checkWin_obj.checkWin(currentDirectionBoard)):
@@ -200,6 +202,7 @@ class PipeSolver:
                         newPos = self.getNextPos(currentPos)
                         newMovesList = currentMovesList.copy()
                         newHValue = currentHValue
+                        newGValue = currentGValue + 1
                         
                         # if there's any change in board then we update those values
                         if (currentDirectionBoard[currentX][currentY] != operation):
@@ -207,7 +210,7 @@ class PipeSolver:
                             newMovesList.append((currentPos, operation))
                             newHValue = self.calHValue(currentDirectionBoard, newDirectionBoard, currentPos, currentHValue)   
 
-                        newItem = pqItem(newDirectionBoard, newPos, newMovesList, newHValue)                   
+                        newItem = pqItem(newDirectionBoard, newPos, newMovesList, newHValue, newGValue)                   
                         openList.put(newItem)
         end_time = time.time()
         elapsedTime = end_time - start_time
@@ -215,7 +218,7 @@ class PipeSolver:
         print("Total time taken by A* Algorithm: {0} second(s)".format(elapsedTime))
 
 # Input of the game
-inputReader = InputReader('input/test1.txt')
+inputReader = InputReader('input/test6.txt')
 pipeTypeBoard = inputReader.getPipeTypeBoard()
 pipeDirectionBoard = inputReader.getDirectionBoard()
 del inputReader # we no longer need it
