@@ -216,6 +216,7 @@ class PipeSolver:
         elapsedTime = end_time - start_time
         print("Cannot find a solution")
         print("Total time taken by A* Algorithm: {0} second(s)".format(elapsedTime))
+        print("Number of times popping queue: {0} times".format(counter))
 
 # Input of the game
 inputReader = InputReader('input/test6.txt')

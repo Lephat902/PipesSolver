@@ -204,13 +204,10 @@ class PipeSolver:
             if (currentNumOfPipeMismatches == 0 and self.checkWin_obj.checkWin(currentDirectionBoard)):
                 end_time = time.time()
                 elapsedTime = end_time - start_time
-                self.boardPrinter = BoardPrinter(
-                    self.pipeTypeBoard, self.pipeDirectionBoard)
+                self.boardPrinter = BoardPrinter(self.pipeTypeBoard, self.pipeDirectionBoard)
                 self.boardPrinter.printBoard(currentMovesList)
-                print("Total time taken by BFS Algorithm: {0} second(s)".format(
-                    elapsedTime))
-                print(
-                    "Number of times popping queue: {0} times".format(counter))
+                print("Total time taken by BFS Algorithm: {0} second(s)".format(elapsedTime))
+                print("Number of times popping queue: {0} times".format(counter))
                 return
 
             # the last pipe: we can't rotate any pipe if currentPos = (-1,-1)
@@ -231,20 +228,19 @@ class PipeSolver:
                             newDirectionBoard[currentX][currentY] = operation
                             newMovesList.append((currentPos, operation))
                             newNumOfPipeMismatches = self.getNewNumOfPipeMismatches(currentDirectionBoard,
-                                                                                    newDirectionBoard, currentPos, currentNumOfPipeMismatches)
+                                                    newDirectionBoard, currentPos, currentNumOfPipeMismatches)
 
-                        newItem = queueItem(
-                            newDirectionBoard, newPos, newMovesList, newNumOfPipeMismatches)
+                        newItem = queueItem(newDirectionBoard, newPos, newMovesList, newNumOfPipeMismatches)
                         openList.append(newItem)
         end_time = time.time()
         elapsedTime = end_time - start_time
         print("Cannot find a solution")
-        print("Total time taken by BFS Algorithm: {0} second(s)".format(
-            elapsedTime))
+        print("Total time taken by BFS Algorithm: {0} second(s)".format(elapsedTime))
+        print("Number of times popping queue: {0} times".format(counter))
 
 
 # Input of the game
-inputReader = InputReader('input/test4.txt')
+inputReader = InputReader('input/test6.txt')
 pipeTypeBoard = inputReader.getPipeTypeBoard()
 pipeDirectionBoard = inputReader.getDirectionBoard()
 
