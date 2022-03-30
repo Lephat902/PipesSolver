@@ -5,7 +5,12 @@
 # How to run
 > Requirement: Python 3 installed
 - Choose input in [BFS](./BFSPipeSolver.py) or [A*](./aStarPipeSolver.py) at the end of the file to the input file name in folder input.
+<br>
+
 Run **BFS**: *make run1*
+
+<br>
+
 Run **A\***: *make run2*
 
 # A thing about [this puzzle](https://www.puzzle-pipes.com/)
