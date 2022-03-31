@@ -1,0 +1,5 @@
+1. Make sure you already installed python 3
+2. Change input in aStarPipeSolver.py or BFSPipeSolver.py at the end of each file
+3. Open terminal
+4. Run BFS:  and type: make run1
+5. Run A*: Type make run2 
